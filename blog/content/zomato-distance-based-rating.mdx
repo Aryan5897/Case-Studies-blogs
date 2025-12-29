@@ -1,0 +1,460 @@
+---
+title: "Zomato's Distance-Based Rating System: Making Restaurant Ratings Fairer"
+description: "How Zomato could solve rating unfairness by accounting for delivery distance - a PM case study in marketplace fairness"
+date: "2024-12-27"
+tags: ["Product Management", "Marketplace Design", "Ratings Systems"]
+featured: false
+readTime: "9 min read"
+author: "Aryan Kumar"
+thumbnail: "/thumbnails/zomato-distance-rating.jpg"
+---
+
+Restaurant ratings should reflect **food quality**, not delivery distance. But today, they don't.
+
+A restaurant 8km away gets unfairly penalized when food arrives cold - even though the food was perfect when it left the kitchen.
+
+Let's design a solution.
+
+## The Problem Statement
+
+### Why Current Ratings Are Broken
+
+Restaurant ratings on food delivery platforms often **don't reflect true quality** because:
+
+**User Perspective:**
+- Food quality degrades with delivery distance & time
+- Cold food, soggy packaging impacts user experience
+- Users rate the end-to-end experience (food + delivery)
+
+**Restaurant Perspective:**
+- Gets penalized for issues outside their control
+- Delivery delays, long distances hurt ratings
+- No separation between food quality vs. logistics
+
+**The Result:**
+- Unfair restaurant ratings
+- Misleading signals for users
+- Eroded restaurant trust in platform
+
+### The Core Insight
+
+> **Food quality ≠ Delivery experience, but ratings conflate them.**
+
+## The Product Goal
+
+Create a **fairer and more accurate rating system** by adjusting ratings based on **delivery distance**, ensuring:
+
+- ✅ Restaurant quality is judged independently of logistics impact
+- ✅ Users make better decisions (see "true" restaurant quality)
+- ✅ Restaurants are not unfairly penalized for distance-related issues
+
+## Solution Overview: Distance-Adjusted Rating System
+
+### The Concept
+
+Introduce a **distance-normalized rating** where:
+
+- User ratings are **weighted** based on delivery distance
+- Long-distance orders have **reduced negative impact**
+- Short-distance orders have **higher weight** on final rating
+
+### The Philosophy
+
+**Nearby orders = better signal of restaurant quality**
+
+**Why?**
+- Food arrives fresh
+- Packaging intact
+- Temperature maintained
+- Timing controlled
+
+**Distant orders = noisier signal**
+
+**Why?**
+- Many variables outside restaurant control
+- Delivery time longer
+- Food quality degradation inevitable
+- Logistics issues dominate
+
+## How It Works (Simplified Logic)
+
+### Step 1: Capture Distance Buckets
+
+Orders are grouped into distance ranges:
+
+- **0–2 km** (very close)
+- **2–5 km** (medium distance)
+- **5–8 km** (far)
+- **8+ km** (very far)
+
+### Step 2: Apply Rating Weight
+
+Each rating is multiplied by a **distance-based weight**.
+
+| Distance Range | Weight | Reasoning |
+|---------------|--------|-----------|
+| **0–2 km** | 1.0 | Full weight - best signal |
+| **2–5 km** | 0.85 | Slight degradation expected |
+| **5–8 km** | 0.7 | Significant logistics impact |
+| **8+ km** | 0.55 | Very high logistics noise |
+
+**Example:**
+
+A 3-star rating from 8+ km:
+- Weighted rating = 3 × 0.55 = **1.65 effective stars**
+
+A 3-star rating from 0-2 km:
+- Weighted rating = 3 × 1.0 = **3.0 effective stars**
+
+**The Outcome:**
+A bad rating from far away hurts the restaurant **less** than a bad rating from nearby.
+
+### Step 3: Final Rating Calculation
+
+```
+Final Restaurant Rating =
+  Sum(Rating × Distance Weight)
+  ÷
+  Sum(Distance Weights)
+```
+
+**This ensures:**
+- Nearby experiences dominate restaurant reputation
+- Distance-induced issues are mathematically discounted
+- Overall rating becomes more accurate
+
+## Example Calculation
+
+### Scenario: A Restaurant Gets 3 Orders
+
+| Order | Distance | User Rating | Weight | Weighted Rating |
+|-------|----------|-------------|--------|----------------|
+| 1 | 1 km | 5 stars | 1.0 | 5.0 |
+| 2 | 6 km | 3 stars | 0.7 | 2.1 |
+| 3 | 9 km | 2 stars | 0.55 | 1.1 |
+
+**Traditional Average:**
+(5 + 3 + 2) ÷ 3 = **3.33 stars**
+
+**Distance-Adjusted Average:**
+(5.0 + 2.1 + 1.1) ÷ (1.0 + 0.7 + 0.55) = **8.2 ÷ 2.25 = 3.64 stars**
+
+**Result:**
+Restaurant rating improves by **0.31 stars** - fairer representation of actual food quality.
+
+## Success Metrics (PM View)
+
+### Primary Metrics
+
+**1. Rating Fairness:**
+- Reduction in low ratings from long-distance orders
+- Rating variance consistency across distance buckets
+
+**2. Restaurant Satisfaction:**
+- Decrease in restaurant complaints about unfair ratings
+- Restaurant retention rate
+- New restaurant sign-ups
+
+**3. User Trust:**
+- Correlation between distance-adjusted rating and repeat orders
+- User satisfaction with rating accuracy
+
+### Secondary Metrics
+
+**Order Behavior:**
+- Order conversion rate (do better ratings drive orders?)
+- Repeat order rate per restaurant
+- Average order distance
+
+**Platform Health:**
+- Restaurant churn rate
+- Active restaurant count
+- GMV growth
+
+## Stakeholder Impact Analysis
+
+### The Trade-offs
+
+| Stakeholder | Benefit | Potential Concern |
+|-------------|---------|-------------------|
+| **Users** | More reliable ratings | May feel their rating "counts less" |
+| **Restaurants** | Fairer reputation | Could encourage longer-distance deliveries |
+| **Delivery Partners** | Less blame for food quality issues | None significant |
+| **Zomato** | Higher marketplace trust & health | Implementation complexity |
+
+## Risk Management
+
+### Risk 1: User Trust
+
+**Problem:**
+Users may feel their distant-order rating is "discounted" unfairly.
+
+**Mitigation:**
+- **Transparent communication:**
+  - *"Ratings are adjusted based on delivery distance to ensure fairness"*
+  - Show users the logic in app/FAQ
+
+- **Dual rating system:**
+  - Food Quality Score (distance-adjusted)
+  - Delivery Experience Score (not adjusted)
+
+**UX Copy Example:**
+> "Your rating helps! Note: Ratings from nearby orders have more weight in restaurant scores, since food quality is best preserved over short distances."
+
+### Risk 2: Gaming the System
+
+**Problem:**
+Restaurants might encourage users to order from farther away (lower weight on bad ratings).
+
+**Mitigation:**
+- **Cap distance influence:** Beyond 10km, no further reduction in weight
+- **Monitor gaming patterns:** Flag restaurants with suspicious distance distributions
+- **Limit delivery radius:** Restrict max delivery distance per restaurant
+
+### Risk 3: Perception of Complexity
+
+**Problem:**
+Users and restaurants may find the system too complex.
+
+**Mitigation:**
+- **Keep it invisible:** Don't show weights in UI
+- **Communicate outcome only:** "Our ratings account for delivery distance"
+- **Gradual rollout:** A/B test with clear messaging
+
+## Experiments & Iteration
+
+### Phase 1: A/B Test Distance-Adjusted vs. Raw Ratings
+
+**Test:**
+- Control: Traditional average rating
+- Variant: Distance-adjusted rating
+
+**Measure:**
+- Order conversion rate
+- Restaurant satisfaction
+- User trust surveys
+
+### Phase 2: "Best Within X km" Badges
+
+**Feature:**
+- Show badge: "Best within 3 km"
+- Highlight restaurants excelling in nearby orders
+
+**Why:**
+- Helps users choose based on proximity
+- Rewards restaurants for local quality
+
+### Phase 3: Dual Rating System
+
+**Food Quality Score:**
+- Distance-adjusted
+- Reflects restaurant cooking quality
+
+**Delivery Experience Score:**
+- Not distance-adjusted
+- Reflects packaging, delivery partner, timeliness
+
+**Benefit:**
+- Separates concerns
+- More nuanced feedback
+- Clearer attribution
+
+### Phase 4: Dynamic Distance Weights by City
+
+**Insight:**
+Bangalore traffic ≠ Delhi traffic
+
+**Solution:**
+- Adjust weights based on city-specific delivery times
+- Account for local logistics reality
+
+## Why This Is Strong PM Thinking
+
+### 1. Separates Product Quality from Logistics
+
+**Traditional Rating:**
+Blends food + delivery into one score.
+
+**Distance-Adjusted Rating:**
+Isolates restaurant quality from logistics variables.
+
+**Result:** Better signal, clearer attribution.
+
+### 2. Improves Signal Accuracy
+
+**Noisy Signal:**
+Ratings from 10km away tell you little about food quality.
+
+**Clean Signal:**
+Ratings from 1km away tell you a lot.
+
+**Result:** Prioritize clean signals.
+
+### 3. Reduces Restaurant Dissatisfaction
+
+**Current State:**
+Restaurants feel helpless about ratings.
+
+**With Distance Adjustment:**
+Restaurants see fairer evaluation.
+
+**Result:** Better platform trust, lower churn.
+
+### 4. Aligns Incentives Across Ecosystem
+
+**Before:**
+- Restaurants want short distances (to protect ratings)
+- Platform wants long distances (more revenue)
+- Conflict
+
+**After:**
+- Ratings account for distance
+- Platform can optimize for both
+
+**Result:** Win-win alignment.
+
+## Implementation Considerations
+
+### Technical Requirements
+
+**Data Collection:**
+- Order distance tracking
+- Distance bucket assignment
+- Historical rating re-calculation
+
+**Rating Calculation Service:**
+- Weighted average algorithm
+- Real-time updates
+- A/B testing infrastructure
+
+**UX/UI:**
+- Transparent messaging
+- FAQ content
+- Restaurant dashboard
+
+**Analytics:**
+- Distance distribution per restaurant
+- Rating variance by distance
+- Impact measurement
+
+### Privacy & Transparency
+
+**User Privacy:**
+- Distance data anonymized
+- No personal location tracking beyond order
+
+**Algorithmic Transparency:**
+- Clear explanation in app
+- Accessible FAQ
+- Restaurant dashboard showing breakdown
+
+## Alternative Approaches
+
+### Option 1: Separate Quality & Delivery Ratings
+
+**Pros:**
+- Clear attribution
+- Easier to understand
+
+**Cons:**
+- More complex UI
+- User fatigue (two ratings)
+
+### Option 2: Time-Based Adjustment (Instead of Distance)
+
+**Logic:**
+Adjust by delivery time, not distance.
+
+**Pros:**
+- Accounts for traffic, delays
+- More direct measure
+
+**Cons:**
+- Time varies by traffic, harder to normalize
+
+### Option 3: Show "Delivery Radius" Badges
+
+**Example:**
+"Best within 5km radius"
+
+**Pros:**
+- Simplest for users
+- No algorithm complexity
+
+**Cons:**
+- Doesn't fix underlying rating issue
+
+## PM Learnings
+
+### 1. Marketplace Health Requires Fairness
+
+**Unfair systems:**
+- Drive supply-side churn
+- Erode platform trust
+
+**Fair systems:**
+- Retain supply
+- Improve long-term health
+
+**Lesson:** Fairness = growth strategy.
+
+### 2. Ratings Are Signals - Optimize Signal Quality
+
+**Bad signal:**
+Noisy, conflated data.
+
+**Good signal:**
+Isolated, clean attribution.
+
+**Lesson:** Treat ratings as data quality problem.
+
+### 3. Separate Controllable from Uncontrollable
+
+**Restaurant Controls:**
+- Food quality
+- Packaging
+- Prep time
+
+**Restaurant Doesn't Control:**
+- Delivery traffic
+- Distance
+- Delivery partner behavior
+
+**Product Strategy:** Don't penalize for uncontrollable factors.
+
+### 4. Transparency Builds Trust
+
+**Hidden algorithms:**
+Breed distrust.
+
+**Explained algorithms:**
+Build confidence.
+
+**Lesson:** Show your work.
+
+### 5. Start Simple, Iterate
+
+**Phase 1:** Distance-based weights
+
+**Phase 2:** Dual ratings
+
+**Phase 3:** City-specific adjustments
+
+**Lesson:** Don't over-engineer V1.
+
+## Conclusion: Fairness as a Feature
+
+Distance-based rating adjustment is more than a feature - it's a **marketplace health strategy**.
+
+**Benefits:**
+- ✅ Fairer restaurant evaluation
+- ✅ Better user decision-making
+- ✅ Reduced ecosystem friction
+- ✅ Improved platform trust
+
+**The Meta-Lesson:**
+Great marketplace design separates signal from noise, rewards quality fairly, and aligns incentives across all participants.
+
+---
+
+**One-Line Takeaway:** Zomato's distance-based rating adjustment proves that the best product features don't just improve UX - they make the entire marketplace fairer, healthier, and more trustworthy by separating what restaurants control from what they don't.

@@ -1,0 +1,734 @@
+---
+title: "Glean: AI-Powered Enterprise Search That Actually Works"
+description: "How Glean uses AI to make enterprise knowledge instantly searchable and accessible across all company tools and documents"
+date: "2024-12-27"
+tags: ["Product Management", "AI", "Enterprise Software"]
+featured: true
+readTime: "11 min read"
+author: "Aryan Kumar"
+thumbnail: "/thumbnails/glean-search.jpg"
+---
+
+While Google Search works great for the internet, enterprise search has been broken for decades. Glean **finally solved it with AI that understands context, permissions, and relevance**. The result? Company knowledge that's actually findable.
+
+## The Core Problem
+
+### Enterprise Search Is Broken
+
+**The Reality:**
+- Knowledge scattered across 30+ tools
+- Search returns irrelevant results
+- Takes 10 minutes to find a document
+- Employees ask same questions repeatedly
+- Tribal knowledge locked in people's heads
+
+**Time Wasted:**
+- 3.6 hours/week searching for information
+- 2.5 hours/week recreating existing work
+- $1800/employee/year in lost productivity
+
+**Traditional Solutions:**
+- SharePoint search (terrible)
+- Google Workspace search (limited)
+- Confluence search (slow, inaccurate)
+- Slack search (can't find anything)
+
+### The Critical Insight
+
+> **The problem isn't lack of information—it's that you can't find it when you need it.**
+
+**Problem Wasn't:**
+❌ "Store more documents"
+
+**Problem Was:**
+✅ "Make all company knowledge instantly searchable with perfect relevance"
+
+## Product Vision
+
+### Vision in One Line
+
+> "Make every employee feel like they have instant access to everything the company knows."
+
+**Glean Is:**
+- Universal search (across all tools)
+- AI-powered relevance
+- Permission-aware results
+- Context-understanding
+- Proactive knowledge surfacing
+
+**📌 AI makes enterprise knowledge accessible.**
+
+## Strategic Product Decisions
+
+### 1. Search Across Everything (Universal Index)
+
+**Traditional Approach:**
+- Search one tool at a time
+- Context switching
+- Fragmented results
+- Incomplete information
+
+**Glean Approach:**
+```
+One search bar
+    ↓
+Searches simultaneously:
+- Google Drive
+- Slack conversations
+- Confluence pages
+- Jira tickets
+- GitHub code
+- Notion docs
+- Salesforce records
+- Gmail threads
+- Calendar events
+- + 100 more integrations
+    ↓
+Unified results ranked by relevance
+```
+
+**Impact:**
+- Single source of truth
+- No tool switching
+- Complete context
+- 10x faster
+
+**📌 PM Insight: Universal search = must-have.**
+
+### 2. AI-Powered Relevance
+
+**Traditional Search:**
+- Keyword matching
+- Returns 1000s of results
+- Sorted by recency or alphabetically
+- Mostly irrelevant
+
+**Glean AI Ranking:**
+
+**Considers:**
+- Your role and team
+- What you've accessed before
+- Who created the document
+- Document freshness and popularity
+- Semantic meaning (not just keywords)
+- Related content context
+- Collaboration patterns
+
+**Example:**
+```
+Search: "Q4 goals"
+
+Traditional: Returns 500 docs with "Q4 goals" in title
+Glean: Returns:
+1. Your team's Q4 OKRs (you collaborated on)
+2. Company-wide Q4 goals (CEO announcement)
+3. Related Q4 planning doc (frequently accessed by team)
+4. Last quarter's goals (context for comparison)
+5. Department goals affecting your projects
+```
+
+**🧠 AI understands context, not just keywords**
+
+### 3. Permissions-Aware (Critical for Enterprise)
+
+**Security Challenge:**
+- Some docs are public
+- Some are team-only
+- Some are confidential
+- Must respect access controls
+
+**Glean Solution:**
+```
+Indexes all content
+    ↓
+Stores permission metadata
+    ↓
+Shows only what YOU can access
+    ↓
+No information leakage
+    ↓
+Audit logs track who saw what
+```
+
+**Enterprise Requirement:**
+- Role-based access control
+- SSO integration
+- Compliance (SOC2, GDPR)
+- Audit trails
+
+**📌 Security = non-negotiable for enterprise.**
+
+### 4. Proactive Knowledge Surfacing
+
+**Not Just Search:**
+- AI suggests relevant docs
+- Surfaces related information
+- Recommends experts
+- Connects related work
+
+**Features:**
+
+**"People Also Viewed":**
+- Shows related documents
+- Discovers adjacent context
+- Serendipitous learning
+
+**"Ask These People":**
+- Identifies subject matter experts
+- Shows who created/edited content
+- Facilitates collaboration
+
+**Daily Digest:**
+- Important updates you might have missed
+- Relevant new documents
+- Trending topics in your org
+
+**💡 Proactive > reactive**
+
+## Use Case Deep Dive
+
+### Use Case 1: New Employee Onboarding
+
+**Traditional Experience:**
+- Week 1: Lost and confused
+- Ask teammates basic questions
+- Can't find documentation
+- Overwhelmed by tools
+
+**With Glean:**
+
+**Day 1:**
+```
+Search: "How do I expense meals?"
+    ↓
+Glean returns:
+1. Expense policy doc
+2. Expensify tutorial
+3. Slack thread: Common expense questions
+4. Contact: Finance team
+5. Video: Expense workflow walkthrough
+
+Result: Self-service answer in 10 seconds
+```
+
+**Week 1:**
+```
+Search: "Our product roadmap"
+    ↓
+Glean shows:
+1. Current Q roadmap (product team)
+2. Engineering priorities doc
+3. Last all-hands presentation
+4. Related customer feedback
+5. Expert: PM who owns roadmap
+
+Result: Full context without bothering teammates
+```
+
+**Impact:**
+- 50% faster onboarding
+- More independent learning
+- Less teammate interruption
+- Better knowledge retention
+
+**📌 Self-service onboarding.**
+
+### Use Case 2: Sales Enablement
+
+**Traditional Experience:**
+- Sales rep needs competitive intel
+- Asks in Slack "Anyone have Competitor X battlecard?"
+- Waits for response
+- Gets outdated doc
+- Wastes 30 minutes
+
+**With Glean:**
+
+**Scenario: Preparing for competitive deal**
+```
+Search: "Competitor X comparison"
+    ↓
+Glean surfaces:
+1. Latest competitive battlecard (updated last week)
+2. Win/loss analysis against Competitor X
+3. Recent case study (customer switched from X)
+4. Pricing comparison sheet
+5. Demo recording addressing X's features
+6. Slack thread: Recent competitive deal
+7. Expert: Sales engineer who knows X best
+
+Timeframe: 30 seconds
+Outcome: Comprehensive prep materials
+```
+
+**Impact:**
+- 90% time savings
+- Always current information
+- Better prepared for deals
+- Higher win rates
+
+### Use Case 3: Engineering Problem-Solving
+
+**Traditional Experience:**
+- Engineer encounters error
+- Searches Slack (finds nothing)
+- Searches Confluence (too slow)
+- Asks in #engineering channel
+- Waits for response
+- Reinvents the wheel
+
+**With Glean:**
+
+**Scenario: Debugging production issue**
+```
+Search: "Redis timeout error production"
+    ↓
+Glean returns:
+1. Incident report: Similar issue from 2 months ago
+2. GitHub PR that fixed related timeout
+3. Runbook: Redis troubleshooting guide
+4. Slack thread: Team discussing timeouts
+5. Jira ticket: Known Redis issue + workaround
+6. Expert: Engineer who resolved similar issue
+
+Timeframe: 15 seconds
+Outcome: Solution found, no interruption needed
+```
+
+**Impact:**
+- 80% fewer repeated questions
+- Faster incident resolution
+- Institutional knowledge preserved
+- Reduced developer interruptions
+
+**📌 Tribal knowledge becomes searchable.**
+
+### Use Case 4: Product Research
+
+**Traditional Experience:**
+- PM needs customer feedback on feature
+- Checks multiple tools:
+  - Salesforce (customer requests)
+  - Gong (call recordings)
+  - Slack (customer channels)
+  - Productboard (feedback board)
+  - Google Docs (research docs)
+- Takes 2 hours to compile
+
+**With Glean:**
+
+**Scenario: Researching feature request**
+```
+Search: "API rate limiting customer feedback"
+    ↓
+Glean aggregates:
+1. Salesforce: 15 customer feature requests
+2. Gong: 8 customer calls mentioning it
+3. Slack: Customer discussion threads
+4. Support tickets: Related escalations
+5. Competitor analysis: How others handle it
+6. Engineering: Technical feasibility doc
+7. Productboard: Prioritization score
+
+Timeframe: 30 seconds
+Outcome: Complete research context
+```
+
+**Impact:**
+- 4x faster research
+- More comprehensive insights
+- Data-driven decisions
+- Better prioritization
+
+### Use Case 5: Executive Decision-Making
+
+**Traditional Experience:**
+- Exec needs context for board meeting
+- Asks team to compile information
+- Team spends 4 hours gathering docs
+- Still missing pieces
+- Last-minute scramble
+
+**With Glean:**
+
+**Scenario: Board prep for growth metrics**
+```
+Search: "Q4 growth metrics revenue churn"
+    ↓
+Glean surfaces:
+1. Latest revenue dashboard (live data)
+2. Q4 financial report (finalized)
+3. Churn analysis presentation
+4. Sales pipeline update
+5. Customer success metrics
+6. Competitive win/loss data
+7. Previous board deck for comparison
+
+AI also suggests:
+- Related: Product usage trends
+- Expert: VP Sales for questions
+- Context: Last quarter's board discussion
+
+Timeframe: 1 minute
+Outcome: Complete context for decision
+```
+
+**Impact:**
+- Strategic time better spent
+- Complete information access
+- No team interruption
+- Better decisions
+
+**📌 Executive self-service.**
+
+## UX Philosophy: Search That Understands You
+
+### Design Principles
+
+**Instant Results:**
+- Sub-second response time
+- Real-time indexing
+- Fast, always
+
+**Personalized Relevance:**
+- Results ranked for YOU
+- Learns from your behavior
+- Gets smarter over time
+
+**Rich Previews:**
+- See content without clicking
+- Quick context assessment
+- Faster decision-making
+
+**Keyboard-First:**
+- Cmd+K to search anywhere
+- Navigate with arrows
+- No mouse required
+- Power user friendly
+
+**💡 Speed + relevance = adoption**
+
+## Enterprise Considerations
+
+### Security and Compliance
+
+**Data Security:**
+- Enterprise-grade encryption
+- Permission inheritance
+- Zero trust architecture
+- SOC2, GDPR compliant
+
+**Access Control:**
+- Respects source permissions
+- SSO integration
+- Audit logs
+- Data residency options
+
+**Privacy:**
+- No training on customer data
+- Search history private
+- Admin controls
+- Transparent data handling
+
+**📌 Security earns enterprise trust.**
+
+### Integration Strategy
+
+**100+ Integrations:**
+
+**Productivity:**
+- Google Workspace
+- Microsoft 365
+- Slack
+- Notion
+
+**Engineering:**
+- GitHub
+- GitLab
+- Jira
+- Confluence
+
+**Sales:**
+- Salesforce
+- HubSpot
+- Gong
+- Outreach
+
+**Custom:**
+- REST API for custom tools
+- Webhook support
+- Developer platform
+
+**🧠 More integrations = more value**
+
+## Adoption Strategy
+
+### Bottom-Up with Executive Sponsorship
+
+**Phase 1: Power User Pilot**
+- 10-20 early adopters
+- High-frequency searchers
+- Feedback and iteration
+- Build champions
+
+**Phase 2: Team Rollout**
+- Department by department
+- Success stories shared
+- Viral adoption
+- Organic growth
+
+**Phase 3: Company-Wide**
+- All-hands announcement
+- Training sessions
+- Make it default
+- Universal adoption
+
+**Why It Works:**
+- Users see immediate value
+- Word-of-mouth spreads
+- Solves real pain
+- No forcing needed
+
+**📌 Value drives adoption.**
+
+## Monetization Strategy
+
+### Per-User SaaS Pricing
+
+**Pricing Tiers:**
+
+**Pro ($12-15/user/month):**
+- All integrations
+- Core search
+- Standard support
+
+**Enterprise (Custom):**
+- Advanced security features
+- SSO and SAML
+- Dedicated support
+- SLA guarantees
+- Custom integrations
+
+**Why It Works:**
+
+**1. Clear ROI:**
+- Save 3+ hours/week = $2400/year value
+- Price = $150-180/year
+- 13x ROI
+- Easy to justify
+
+**2. Scales with Company:**
+- Grows with headcount
+- Predictable revenue
+- Expansion revenue
+
+**3. Usage = Retention:**
+- Daily usage = high retention
+- Search is habitual
+- Hard to live without
+
+**💡 Value is 10x+ the price.**
+
+## Competitive Positioning
+
+| Solution | Scope | AI Quality | Permissions | Speed |
+|----------|-------|------------|-------------|-------|
+| **Google Workspace Search** | Google apps only | Basic | Yes | Fast |
+| **Microsoft Search** | Microsoft apps only | Basic | Yes | Slow |
+| **Coveo** | Custom indexing | Medium | Complex | Medium |
+| **Glean** | **Universal** | **Best** | **Native** | **Fastest** |
+
+**Glean's Advantages:**
+- Best AI relevance
+- Widest integration coverage
+- Fastest performance
+- Cleanest UX
+- Strongest security
+
+**📌 AI quality = competitive moat.**
+
+## Metrics That Matter
+
+### Product Metrics
+
+**Engagement:**
+- Daily active users
+- Searches per user
+- Click-through rate
+- Time to find answer
+
+**Quality:**
+- Result relevance score
+- User satisfaction (thumbs up/down)
+- Time saved per search
+- Repeat search rate (lower = better)
+
+**Coverage:**
+- % of tools integrated
+- Documents indexed
+- Content freshness
+
+### Business Metrics
+
+**Adoption:**
+- User activation rate
+- Team penetration
+- Feature usage
+- Viral coefficient
+
+**Value:**
+- Time saved per employee
+- Productivity increase
+- Onboarding time reduction
+- Support ticket reduction
+
+**Retention:**
+- Daily usage rate
+- Churn rate
+- NPS score
+- Expansion revenue
+
+**📌 Success = daily habit.**
+
+## PM Learnings
+
+### 1. Universal Search Is the Killer Feature
+
+**Single-Tool Search:**
+- Limited value
+- Requires tool switching
+
+**Universal Search:**
+- 10x more valuable
+- Single interface
+- Maximum impact
+
+**Lesson:** Go broad, not deep
+
+### 2. AI Relevance Makes or Breaks Product
+
+**Poor Relevance:**
+- Unusable
+- Abandoned
+
+**Excellent Relevance:**
+- Trusted
+- Habitual
+
+**Investment:** AI quality = product quality
+
+### 3. Permissions Must Be Perfect
+
+**Permission Bugs:**
+- Security breach
+- Instant deal-killer
+- Enterprise lost
+
+**Perfect Permissions:**
+- Trust established
+- Enterprise sales enabled
+
+**Requirement:** Zero tolerance for errors
+
+### 4. Speed Is a Feature
+
+**Slow Search:**
+- Frustrating
+- Low adoption
+
+**Fast Search:**
+- Delightful
+- High usage
+
+**Priority:** Sub-second latency
+
+### 5. Integrations = Network Effects
+
+**Few Integrations:**
+- Limited utility
+- Low adoption
+
+**Many Integrations:**
+- Universal value
+- Viral growth
+- Moat
+
+**Strategy:** Integration breadth matters
+
+### 6. Bottom-Up Adoption Works
+
+**Top-Down Mandate:**
+- Resistance
+- Low usage
+
+**Bottom-Up Value:**
+- Enthusiastic adoption
+- Organic spread
+- Strong retention
+
+**Motion:** Let product sell itself
+
+### 7. Daily Usage = Retention
+
+**Occasional Use:**
+- Forgettable
+- Churn risk
+
+**Daily Use:**
+- Essential
+- High retention
+- Expansion opportunity
+
+**Goal:** Build habit
+
+## Expansion Strategy
+
+**Phase 1: Search**
+- Find anything instantly
+- Core value
+- Broad adoption
+
+**Phase 2: Recommendations**
+- Proactive knowledge surfacing
+- Related content
+- Expert identification
+
+**Phase 3: Knowledge Graph**
+- Map relationships
+- Discover connections
+- Organizational intelligence
+
+**Phase 4: AI Answers**
+- Direct answers, not just links
+- Synthesize information
+- Chat with company knowledge
+
+**📌 Search → Discovery → Intelligence.**
+
+## Conclusion
+
+Glean succeeds because:
+
+**✅ Universal search across all tools**
+**✅ AI-powered perfect relevance**
+**✅ Enterprise-grade security**
+**✅ Lightning-fast performance**
+**✅ Daily habit formation**
+
+### The Meta-Lesson
+
+> **Enterprise search has been broken for 20 years—AI finally made it work by understanding context, not just keywords.**
+
+---
+
+**One-Line Takeaway:** Glean wins by making all company knowledge instantly searchable with AI that understands context, respects permissions, and delivers perfect relevance—turning enterprise search from frustration into superpower.
+
+---
+
+## Product Screenshots
+
+### Glean Search
+<ImageViewer src="/images/case-studies/glean-search-og.jpg" alt="Glean Enterprise Search" />
+
+### Glean Data Analysis
+<ImageViewer src="/images/case-studies/glean-analysis.png" alt="Glean Data Analysis" />
