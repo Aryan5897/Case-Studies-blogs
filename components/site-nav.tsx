@@ -8,12 +8,12 @@ export function SiteNav() {
       <div className="max-w-7xl mx-auto w-full flex h-14 items-center justify-between px-6">
         <div className="mr-4 flex">
           <Link
-            href="/"
+            href="https://aryan-product.vercel.app/"
             className="mr-6 flex items-center space-x-2 font-medium text-lg tracking-tighter h-8 w-8 rounded-md overflow-hidden"
           >
             <img
               src="/magicui-logo.png"
-              alt="Magic UI"
+              alt="Aryan Kumar"
               className="w-10 h-10 object-cover"
             />
           </Link>

@@ -139,7 +139,7 @@ export default async function BlogPost({ params }: PageProps) {
             <div className="border border-border rounded-lg p-6 bg-card">
               <TableOfContents />
             </div>
-            <PromoContent variant="desktop" />
+        
           </div>
         </aside>
       </div>
